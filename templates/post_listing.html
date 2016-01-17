@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title_name %} Post listing {% endblock %}
+{% block content %}
+<style>
+    table.post_list {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+    td.head{
+        font-size: 150%;
+    }
+</style>
+<table class="post_list">
+    <tr>
+        <td class = "head">Writer</td>
+        <td class = "head">title</td>
+        <td class = "head">time</td>
+    </tr>
+    {% for aPost in list %}
+    <tr>
+        <td>{{aPost.writer}}</td>
+        <td><a href = "/posts/{{aPost.postNum}}">{{aPost.title}}</a></td>
+        <td>{{aPost.created}}</td>
+    <tr>
+        <!-- <li> <a href = {{aPost.postNum}}> {{aPost.title}}  </a></li> -->
+    {% endfor %}
+</ol>
+{% endblock %}

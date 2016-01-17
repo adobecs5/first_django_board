@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title_name %} 글 보기: {{post.title}} {% endblock %}
+
+{% block content %}
+    <body>                        
+        <h1> {{post.title}} </h1>
+        <p> {{post.writer}} </p>
+        <p> {{post.contents}} </p>
+        <ol>
+        {% for aComment in comments %}
+            <li> {{aComment}} </li>
+        {% endfor %}
+        </ol>
+        <div class = "write area">
+            <form action="/posting/" method="POST">{% csrf_token %}
+                <label for="input_field_comment">댓글 주세염: </label>
+                <input id="comment_id" type="text" name="comment">
+                <input id="post_id" type="hidden" name="postNum" value={{post.postNum}}>
+                <input type="submit" value="얍!">
+            </form>
+        </div>
+    <body>
+{% endblock %}
