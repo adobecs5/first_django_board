@@ -2,13 +2,26 @@
 
 {% block title_name %} 글쓰기 {% endblock %}
 {% block content %}
+    <style>
+        #title_id {
+            width: 500px;
+        }
+        #content_id {
+            width: 500px;
+            height: 700px;
+        }
+    </style>
     <div class = "write area">
         <form action="/posting2/" method="POST">{% csrf_token %}
-            <label for="input_field_writer"> 누구에요? </label>
-            <input id="writer_id" type="text" name="writer" required></br>
-            <label for="input_field_title"> 글 제목은? </label>
+            {% if user and not user.is_anonymous %}
+                <input id="writer_id" type="hidden" name="writer" value={{user.get_full_name}}>
+            {% else %}
+                <label for="input_field_writer"> 누구에요? </label>
+                <input id="writer_id" type="text" name="writer" required></br>
+            {% endif %}    
+            <label for="input_field_title">제목</label>
             <input id="title_id" type="text" name="title" required></br>
-            <label for="input_field_comment">글 내용 주세염: </label>
+            <label for="input_field_comment">내용</label>
             <input id="content_id" type="text" name="content" required>
             <input type="submit" value="얍!">
         </form>

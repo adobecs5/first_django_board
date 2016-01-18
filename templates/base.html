@@ -39,7 +39,12 @@
                 <li class="nav_bar"> <a href = "/write"> Write </a> </li>
                 <li class="nav_bar"> <a href = "/about"> About </a> </li>
                 <ul class="nav_bar_right">
-                    <li class="nav_bar"> <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a> </li>
+                    {% if user and not user.is_anonymous %} 
+                        <li class="nav_bar"> <a>Hi, {{user.get_full_name}}</a> </li>
+                        <li class="nav_bar"> <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a> </li>
+                    {% else %}
+                        <li class="nav_bar"> <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a> </li>
+                    {% endif %}    
                 </ul>
             </ul>
         </div>
