@@ -17,9 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from list_posts import views
 from write_article import views as views2
+from login import views as views3
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # if login
+    url(r'^login/', include('login.urls')),
     # by default, list posts.
     # url(r'^$',views.give_post_tag ),
     url(r'^$', include('list_posts.urls')),
@@ -31,4 +34,7 @@ urlpatterns = [
     url(r'^write/', include('write_article.urls')),
     # if posting an article
     url(r'^posting2/', views2.handle_article),
+    # twitter login
+    url('', include('social.apps.django_app.urls', namespace='social')),
+    url('', include('django.contrib.auth.urls', namespace='auth')),
 ]

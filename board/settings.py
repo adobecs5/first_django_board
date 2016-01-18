@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'list_posts'
+    'list_posts',
+    'social.apps.django_app.default',
+    'write_article',
     ]
 
 MIDDLEWARE_CLASSES = [
@@ -66,10 +68,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
+                ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [ 
+            'social.backends.twitter.TwitterOAuth',
+            'django.contrib.auth.backends.ModelBackend',
+            ]
+
+
 
 WSGI_APPLICATION = 'board.wsgi.application'
 
@@ -122,3 +133,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+from login.twitter_config import SOCIAL_AUTH_TWITTER_KEY, SOCIAL_AUTH_TWITTER_SECRET

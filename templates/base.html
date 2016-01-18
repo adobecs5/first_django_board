@@ -27,12 +27,20 @@
             li.nav_bar a:hover{
                 background-color: #111;
             }
+
+            ul.nav_bar_right{
+                float:right;
+            }
+            
         </style>
         <div class="nav_bar">
             <ul>
                 <li class="nav_bar"> <a href = "/"> Home </a> </li>
                 <li class="nav_bar"> <a href = "/write"> Write </a> </li>
                 <li class="nav_bar"> <a href = "/about"> About </a> </li>
+                <ul class="nav_bar_right">
+                    <li class="nav_bar"> <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a> </li>
+                </ul>
             </ul>
         </div>
     </head>
