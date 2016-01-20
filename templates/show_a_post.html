@@ -5,12 +5,15 @@
     <body>                        
         <h1> {{post.title}} </h1>
         <p> {{post.writer}} </p>
+        <hr/>
         <p> {{post.contents}} </p>
+        <hr/>
         <ol>
         {% for aComment in comments %}
             <li> {{aComment}} </li>
         {% endfor %}
         </ol>
+        <hr />
         <div class = "write area">
             <form action="/posting/" method="POST">{% csrf_token %}
                 <label for="input_field_comment">댓글 주세염: </label>
